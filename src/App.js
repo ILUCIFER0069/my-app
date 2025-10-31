@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
+import Navbar from './Components/Navbar'
+import Textform from './Components/Textform'
+import { Alert } from './Components/Alert';
+
 
 function App() {
+  const[aler,setAlert] = useState(null);
+  const showAlert = (type,msg)=>{
+    setAlert({'type':type,'msg':msg})
+    setTimeout(() => {
+      setAlert(null)
+    }, 1500);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <Navbar name='TEXT UTILITY'/>
+    <Alert alert={aler}/>
+    <div className="container">
+      <Textform showAlert ={showAlert} />
     </div>
+    
+    </>
   );
 }
 
